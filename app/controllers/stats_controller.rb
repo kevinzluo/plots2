@@ -31,7 +31,7 @@ class StatsController < ApplicationController
     @contributors = User.contributor_count_for(@start, @end)
   end
 
-  def index
+  def stats
     @time = if params[:time]
               Time.parse(params[:time])
             else

@@ -234,7 +234,7 @@ Plots2::Application.routes.draw do
   get 'map/:name/:date' => 'map#show'
   get 'archive' => 'map#index'
   get 'stats/range' => 'stats#range'
-  get 'stats' => 'stats#index'
+  get 'stats' => 'stats#stats'
   get 'stats/range/:start/:end' => 'stats#range'
   get 'stats/subscriptions' => 'stats#subscriptions'
   get 'feed' => 'notes#rss'
