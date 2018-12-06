@@ -172,6 +172,7 @@
           if($('#chat').is(':visible') == true)
             c.hide() ;
       });
+      $('#searchform_input').val("<%= params[:query] %>");
   </script>
   <%= render :partial => "layouts/alerts" %>
 </div>
