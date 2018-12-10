@@ -72,9 +72,8 @@
   </p>
   <script>
     $(document).ready(function() {      
-      var href1 = '/post?tags=activity:<%= tagname %>,<%= tagname %>,seeks:replications&title=How%20to%20do%20X';
-      var href2 = '/post?tags=<%= tagname %>,question:<%= tagname %>,request:activity&template=question&title=How%20do%20I...&redirect=question';
-      gridCreateAdditions('#buttons-<%= randomSeed %>', href1, href2);
+      var href = '/post?tags=<%= tagname %>,question:<%= tagname %>,request:activity&template=question&title=How%20do%20I...&redirect=question';
+      gridLinkModal('#buttons-<%= randomSeed %>', href);
     });
   </script>
 <% end %>
@@ -103,28 +102,18 @@
   //setupGridSorters(".<%= className %>-<%= randomSeed %>"); Should order the items by time. Commented out because it reorders the items each time show more/less is clicked
 })()
 
-function gridCreateAdditions(selector, href1, href2) {
+function gridLinkModal(selector, href) {
   var current_user = $('ul.nav.navbar-nav.navbar-right').children('li:nth-of-type(2)').text().trim() !== "Login"
   if(!current_user) {
     
-    var a1 = $(selector).find('a[href="' + href1 + '"]');
-    a1.attr({
+    var anchor = $(selector).find('a[href="' + href + '"]');
+    anchor.attr({
       'href': '',
       'data-toggle': 'modal',
       'data-target': '#loginModal'
     });
-    a1.on('click', function() {
-      $.getJSON(href1).done(function() {console.log("went to" + href1)});
-    });
-    
-    var a2 = $(selector).find('a[href="' + href2 + '"]');
-    a2.attr({
-      'href': '',
-      'data-toggle': 'modal',
-      'data-target': '#loginModal'
-    });
-    a2.on('click', function() {
-      $.getJSON(href2).done(function() { console.log("went to " + href2)});
+    anchor.on('click', function() {
+      $.getJSON(href);
     });
   }
 }
